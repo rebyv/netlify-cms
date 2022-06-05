@@ -48,12 +48,12 @@ collections:
             - {label: Name, name: name, widget: string}
             - {label: Filter, name: filter, widget: string}
         - label: Project
-          name: project
+          name: projects
           widget: list
           fields:
             - {label: Name, name: name, widget: string}
             - {label: Role, name: role, widget: string}
-            - {label: Photo, name: logo, widget: image}
+            - {label: Logo, name: logo, widget: image}
             - {label: Timeline, name: timeline, widget: string}
             - label: Url
               name: url
@@ -79,12 +79,12 @@ collections:
             - {label: Name, name: name, widget: string}
             - {label: Filter, name: filter, widget: string}
         - label: Project
-          name: project
+          name: projects
           widget: list
           fields:
             - {label: Name, name: name, widget: string}
             - {label: Role, name: role, widget: string}
-            - {label: Photo, name: logo, widget: image}
+            - {label: Logo, name: logo, widget: image}
             - {label: Timeline, name: timeline, widget: string}
             - label: Url
               name: url

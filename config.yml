@@ -3,17 +3,12 @@ backend:
   branch: main
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
-i18n:
-  structure: multiple_folders
-  locales: [en, it]
 collections:
 
-  - name: "posts" # Used in routes, e.g., /admin/collections/blog
-    label: "Posts" # Used in the UI
+  - name: "posts.en" # Used in routes, e.g., /admin/collections/blog
+    label: "Posts (EN)" # Used in the UI
     folder: "content/posts" # The path to the folder where the documents are stored
-    i18n:
-      structure: single_file
-      locales: [en, it]
+    filter: {field: "language", value: "en"}
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
@@ -23,13 +18,26 @@ collections:
       - {label: "Featured Image", name: "hero", widget: "image"}
       - {label: "Body", name: "body", widget: "markdown"}
 
+  - name: "posts.it" # Used in routes, e.g., /admin/collections/blog
+    label: "Posts (IT)" # Used in the UI
+    folder: "content/posts" # The path to the folder where the documents are stored
+    filter: {field: "language", value: "it"}
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Titolo", name: "title", widget: "string"}
+      - {label: "Data pubblicazione", name: "date", widget: "datetime"}
+      - {label: "Immagine copertina", name: "hero", widget: "image"}
+      - {label: "Contenuto", name: "body", widget: "markdown"}
+
   - name: "other"
     label: "Other"
     files:
 
-    - name: "projects"
-      label: "Projects"
-      file: "data/sections/projects.yaml"
+    - name: "projects.en"
+      label: "Projects (EN)"
+      file: "data/en/sections/projects.yaml"
       fields:
         - label: Filters
           name: buttons
@@ -58,9 +66,40 @@ collections:
               widget: "list"
               default: ["professional"]
 
-    - name: "experiences"
-      label: "Experiences"
-      file: "data/sections/experiences.yaml"
+    - name: "projects.it"
+      label: "Progetti (IT)"
+      file: "data/it/sections/projects.yaml"
+      fields:
+        - label: Filters
+          name: buttons
+          widget: list
+          fields:
+            - {label: Name, name: name, widget: string}
+            - {label: Filter, name: filter, widget: string}
+        - label: Project
+          name: project
+          widget: list
+          fields:
+            - {label: Name, name: name, widget: string}
+            - {label: Role, name: role, widget: string}
+            - {label: Photo, name: logo, widget: image}
+            - {label: Timeline, name: timeline, widget: string}
+            - label: Url
+              name: url
+              widget: file
+              media_library:
+                config:
+                  allow_multiple: false
+                  choose_url: true
+            - {label: Summary, name: summary, widget: text}
+            - label: "Tags"
+              name: "tags"
+              widget: "list"
+              default: ["professional"]
+
+    - name: "experiences.en"
+      label: "Experiences (EN)"
+      file: "data/en/sections/experiences.yaml"
       fields:
         - label: Experiences
           name: experiences
@@ -82,6 +121,41 @@ collections:
                 - {label: Location, name: location, widget: string}
                 - {label: Overview, name: overview, widget: text, required: false}
             - label: "Positions"
+              name: "positions"
+              widget: list
+              fields:
+                - {label: Designation, name: designation, widget: string}
+                - {label: Start, name: start, widget: date, required: false}
+                - {label: End, name: end, widget: date, required: false}
+                - label: Responsibilities
+                  name: responsibilities
+                  widget: list
+                  default: []
+
+    - name: "experiences.it"
+      label: "Esperienze (IT)"
+      file: "data/it/sections/experiences.yaml"
+      fields:
+        - label: Esperienze
+          name: experiences
+          widget: list
+          fields:
+            - label: "Esperienza"
+              name: "company"
+              widget: "object"
+              summary: '{{fields.name}}'
+              fields:
+                - {label: Name, name: name, widget: string}
+                - label: Url
+                  name: url
+                  widget: file
+                  media_library:
+                    config:
+                      allow_multiple: false
+                      choose_url: true
+                - {label: Location, name: location, widget: string}
+                - {label: Overview, name: overview, widget: text, required: false}
+            - label: "Posizioni"
               name: "positions"
               widget: list
               fields:

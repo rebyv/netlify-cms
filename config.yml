@@ -13,6 +13,7 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Language", name: "language", widget: "hidden", default: "en"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "hero", widget: "image"}
@@ -26,6 +27,7 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Language", name: "language", widget: "hidden", default: "it"}
       - {label: "Titolo", name: "title", widget: "string"}
       - {label: "Data pubblicazione", name: "date", widget: "datetime"}
       - {label: "Immagine copertina", name: "hero", widget: "image"}
